@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/store.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        <div class="left">
+            <a href = "/">Edward's Running Shop </a>
+        </div>
+        <div class="right">
+            <ul>
+                <li>
+                    <form>
+                        <input id="searchBox" type="text" name="searchQuery">
+                        <input id="searchButton" type="submit" value="Search">
+                    </form>
+                </li>
+                <li><a href = "/order">Orders</a> </li>
+                <li><a href = "/login">LOGIN</a> </li>
+                <li> <a href = "/cart"><img src="{{ url_for('static', filename='cart.png') }}" alt="Shopping Cart" width = "20" height = "20"> </a></li>
+                <li>{{noOfItems}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class = "options">
+        <ul>
+            {% for row in categoryData %}
+			<li><a href="/displayCategory?categoryId={{row[0]}}">{{row[0]}}</a></li>
+			{% endfor %}
+        </ul>
+    </div>
+    <div class="container">
+        {% for i in range(productData|length) %}
+            <div class="info">
+                <a href="/productDescription?productId={{ productData[i][0] }}">
+                    <img src="{{ url_for('static', filename=productData[i][2]) }}" id="itemImage" width="100%"/>
+                    <div class="text">{{ productData[i][1] }}</div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>    
+</body>
+</html>

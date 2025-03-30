@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/form.css') }}"/>
+</head>
+<body>
+    <div class="header">
+        <div class="left">
+            <a href = "/">Edward's Running Shop </a>
+        </div>
+        <div class="right">
+            <ul>
+                <li>
+                    <form>
+                        <input id="searchBox" type="text" name="searchQuery">
+                        <input id="searchButton" type="submit" value="Search">
+                    </form>
+                </li>
+                <li><a href = "/order">Orders</a> </li>
+                <li><a href = "/login">LOGIN</a> </li>
+                <li> <a href = "/cart"><img src="{{ url_for('static', filename='cart.png') }}" alt="Shopping Cart" width = "20" height = "20"> </a></li>
+                <li>{{noOfItems}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class = "options">
+        <ul>
+            {% for row in categoryData %}
+              <li><a href="/displayCategory?categoryId={{row[0]}}" class="top">{{row[0]}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <form action = "/addstudent" method = "post">
+        <label for = "username">Username: </label>
+        <input type = "text" class="login" id = "username" name = "username" required>
+        <br><br>
+
+        <label for = "password">Password: </label>
+        <input type = "text" class="login" id = "password" name = "password" required>
+        <br><br>
+
+        <label for = "fname"> First Name: </label>
+        <input type = "text" class="login" id = "fname" name = "fname" required>
+        <br><br>
+
+        <label for = "lname"> Last name: </label>
+        <input type = "text" class="login" id = "lname" name = "lname" required>
+        <br><br>
+
+        <input type = "submit" class="login" value = "Register">
+    </form>
+    <br>
+</body>
+</html>

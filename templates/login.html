@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}"/>
+  </head>
+  <body>
+    <div class="header">
+      <div class="left">
+          <a href = "/" class = "top">Edward's Running Shop </a>
+      </div>
+      <div class="right">
+          <ul>
+              <li>
+                  <form>
+                      <input id="searchBox" type="text" name="searchQuery">
+                      <input id="searchButton" type="submit" value="Search">
+                  </form>
+              </li>
+              <li><a href = "/order" class = "top">Orders</a> </li>
+              <li><a href = "/login" class = "top">LOGIN</a> </li>
+              <li> <a href = "/cart" class = "top"><img src="{{ url_for('static', filename='cart.png') }}" alt="Shopping Cart" width = "20" height = "20"> </a></li>
+              <li>{{noOfItems}}</li>
+          </ul>
+      </div>
+  </div>
+  </div>
+  <div class = "options">
+      <ul>
+          {% for row in categoryData %}
+            <li><a href="/displayCategory?categoryId={{row[0]}}" class="top">{{row[0]}}</a></li>
+          {% endfor %}
+      </ul>
+  </div>
+
+    {% if success == False %}
+        Incorrect Password or Username
+        <br>
+    {% endif%}
+    <div class = "useractions">
+      <form method="POST">
+        <label for="username">Username:</label><br>
+        <input type="text" class = "temp" id="username" name="username" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="text" class = "temp" id="password" name="password" required><br><br>
+        <input type="submit" class="login" name = "login" value="Login">
+      </form>
+      <form method="POST">
+        <input type="submit" class="logout" name="logout" value="Logout">
+      </form>
+      <form method="POST">
+        <input type="submit" class="adduser" name="adduser" value="Add User">
+      </form>
+    </div>
+  </body>
+</html>

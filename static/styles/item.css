@@ -1,0 +1,91 @@
+.header {
+  padding: 16px;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px;
+}
+
+
+.options {
+  background-color: white;
+  padding: 15px 0;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.options ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap; 
+  padding: 0;
+}
+
+.options a {
+  text-decoration: none;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  font-weight: bold;
+  padding: 12px 18px;
+  border-radius: 25px;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  font-size: 16px;
+}
+
+.options a:hover {
+  background: linear-gradient(135deg, #2a5298, #1e3c72);
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.left, .right {
+  display: flex;
+  align-items: center;
+  font-family: 'Buisname';
+  font-size: 20px;
+}
+
+@font-face {
+  font-family: 'Buisname';
+  src: url('/static/fonts/PlayfulTime-BLBB8.ttf');
+}
+
+a:visited, a:link{
+  color: white;
+  text-decoration: none;
+}
+
+ul{
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 16px;
+}
+
+.container{
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 5px;
+}
+
+.text{
+  font-size: 16px;
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  
+}
