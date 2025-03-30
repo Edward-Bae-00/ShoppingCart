@@ -10,7 +10,7 @@ app.secret_key = "thingy mabob"
 productId = -1
 counter = -1
 
-#gets the number of items currently in the cart
+# gets the number of items currently in the cart
 def getLoginDetails():
   #checks if items is in session and 
   if 'items' not in session:  
@@ -21,11 +21,14 @@ def getLoginDetails():
       noOfItems += int(i)
   return (noOfItems)
 
+# the login page
 @app.route('/login', methods=['GET','POST'])
 def login():
+  # connect the database
   connection = sqlite3.connect("myDatabase.db")
   connection.row_factory = sqlite3.Row
   cursor = connection.cursor()
+  
   if request.method == 'POST':
     if 'login' in request.form:
       username = request.form['username']
