@@ -1,3 +1,4 @@
+
 .header {
   padding: 16px;
   background-color: black;
@@ -71,41 +72,14 @@ ul{
   gap: 16px;
 }
 
-.container{
-  position: static;
+.login-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eee;
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  padding: 5px;
+  flex-grow: 1;
+  width: 100%;
 }
 
-* {
-  padding: 0;
-  margin:0;
-  box-sizing: border-box;
-}
-
-.newuser{
-  background-color: gray;
-  /* color: black !important; */
-  
-}
-
-.incorrect {
-  color: red;
-  font-weight: bold;
-  background: #ffd6d6;
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-/* User Actions Section */
 .useractions {
   background: white;
   padding: 30px;
@@ -114,42 +88,21 @@ ul{
   width: 100%;
   max-width: 400px;
   text-align: center;
-  margin-top: 50px;
 }
 
-/* Form Inputs */
-.login {
-  width: 90%;
-  padding: 12px;
-  margin-top: 5px;
+.temp {
+  background: #f0f0f0;
+  color: #333;
+  font-weight: normal;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-.login:focus {
-  border-color: #1e3c72;
-  box-shadow: 0 0 8px rgba(30, 60, 114, 0.5);
-}
-
-/* Buttons */
-.login, .logout, .adduser {
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: white;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
   padding: 10px 15px;
   border-radius: 5px;
-  display: inline-block;
   margin-top: 10px;
   width: 100%;
 }
 
-.temp{
-  background: linear-gradient(135deg, gray, gray);
+.login, .logout, .adduser {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
   color: white;
   font-weight: bold;
   border: none;
@@ -170,8 +123,19 @@ ul{
   background: linear-gradient(135deg, #006400, #228B22);
 }
 
-/* Hover Effects */
 .login:hover, .logout:hover, .adduser:hover {
   opacity: 0.85;
   transform: translateY(-2px);
+}
+
+.incorrect {
+  color: red;
+  font-weight: bold;
+  background: #ffd6d6;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 400px;
 }
