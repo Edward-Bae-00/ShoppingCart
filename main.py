@@ -116,11 +116,10 @@ def productDescription():
   connection.row_factory = sqlite3.Row
   cursor = connection.cursor()
 
-  global productId
+  # global productId
   productId = request.args.get('productId')
   cursor.execute('SELECT id, name, image, price, type, inventory FROM items WHERE id = ?', (productId, ))
   productData = cursor.fetchone()
-  # print(productData[2])
   cursor.execute('SELECT DISTINCT(type) FROM items')
   categoryData = cursor.fetchall()
   cursor.close()
@@ -194,13 +193,11 @@ def cart():
     if 'username' not in session:
       return redirect(url_for('login'))
     noOfItems = getLoginDetails()
-    # username = session['username']
     connection = sqlite3.connect("myDatabase.db")
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
     products = []
     if request.method == 'POST':
-      # print("goes here")
       return redirect(url_for('checkout'))
     if 'items' not in session:
         session['items'] = []

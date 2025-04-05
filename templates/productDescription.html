@@ -37,6 +37,30 @@
         <div id="productName">
             <h1>{{data[1]}}</h1>
         </div>
+    
+        <div id="productContainer">
+            <div id="imageSection">
+                <img src="{{ url_for('static', filename=data[2]) }}" id="productImage"/>
+            </div>
+    
+            <div id="productDescription">
+                <h2>Details</h2>
+                <table id="descriptionTable">
+                    <tr><td>Name:</td><td>{{data[1]}}</td></tr>
+                    <tr><td>Price:</td><td>${{data[3]}}</td></tr>
+                </table>
+    
+                <form method="POST" action="/addToCart">
+                    <input type="number" id="counter-value" name="counter" min="1" max="{{data[5]}}" value="1">
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- <div id="display">
+        <div id="productName">
+            <h1>{{data[1]}}</h1>
+        </div>
         <div>
             <img src={{url_for('static', filename=data[2]) }} id="productImage"/>
         </div>
@@ -53,11 +77,12 @@
                     <td>${{data[3]}}</td>
                 </tr>
             </table>
+
+            <form method="POST" action="/addToCart">
+                <input type="number" id="counter-value" name="counter" min="1" max = "{{data[5]}}" value="1">
+                <button type="submit">Add to Cart</button>
+            </form>
         </div>
-    </div>
-    <form method="POST" action="/addToCart">
-        <input type="number" id="counter-value" name="counter" min="1" max = "{{data[5]}}" value="1">
-        <button type="submit">Add to Cart</button>
-    </form>
+    </div> -->
 </body>
 </html>

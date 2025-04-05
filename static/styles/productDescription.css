@@ -103,73 +103,6 @@ ul{
     margin-bottom: 15px;
 }
 
-#productContainer {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    justify-content: center;
-    width: 100%;
-    max-width: 1000px;
-}
-
-#productImage {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#productDescription {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-}
-
-#productDescription h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #222;
-    margin-bottom: 15px;
-}
-
-#descriptionTable {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#descriptionTable td {
-    padding: 12px;
-    font-size: 18px;
-    color: #555;
-}
-
-#descriptionTable td:first-child {
-    font-weight: bold;
-    color: #333;
-    text-align: right;
-    padding-right: 15px;
-}
-
-form {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-#counter-value {
-    width: 70px;
-    padding: 10px;
-    font-size: 18px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
 button {
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     color: white;
@@ -187,3 +120,73 @@ button:hover {
     transform: translateY(-2px);
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
 }
+
+
+#productContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    width: 100%;
+    max-width: 1000px;
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#imageSection {
+    flex: 1;
+}
+
+#productImage {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+#productDescription {
+    flex: 1;
+}
+
+#productDescription h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#descriptionTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#descriptionTable td {
+    padding: 10px 0;
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+}
+
+#descriptionTable td:first-child {
+    font-weight: bold;
+    color: #444;
+    width: 100px;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#counter-value {
+    width: 70px;
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
