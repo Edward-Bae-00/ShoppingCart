@@ -133,3 +133,13 @@ a {
 a:hover .text {
     color: #007bff;
 }
+
+
+.sticky-heading {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1000;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}

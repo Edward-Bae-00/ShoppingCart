@@ -28,7 +28,7 @@ def login():
   connection = sqlite3.connect("myDatabase.db")
   connection.row_factory = sqlite3.Row
   cursor = connection.cursor()
-  
+
   if request.method == 'POST':
     if 'login' in request.form:
       username = request.form['username']
@@ -93,8 +93,6 @@ def store():
   productData = cursor.fetchall()
   # gets the value of search
   thing = request.args.get('searchQuery')
-  # print(thing)
-
   # if the search is empty then show all the products
   # if the search is not empty then get the info of the product and show that product
   if thing is None:
@@ -153,13 +151,15 @@ def addToCart():
     if 'username' not in session:
       return redirect(url_for('login'))
     else:
+      # checks if session variables items and num are not initialized and if they are not initialize them
       if 'items' not in session:
         session['items'] = []
         session['num'] = []
-      
-
+      # handles adding to cart when the product already exists
       if productId in session['items']:
+        # for loop to see the position that the product is in the list
         for i in range(len(session['items'])):
+          # gets the position of the product in the items list
           if (session['items'][i] == productId):
             temp = session['num']
             temp[i] = int(temp[i]) + int(request.form['counter'])
@@ -225,28 +225,23 @@ def cart():
 
 @app.route("/removeFromCart")
 def removeFromCart():
-    if 'username' not in session:
-      return redirect(url_for('login'))
-    username = session['username']
-    productId = request.args.get('productId')
-    connection = sqlite3.connect("myDatabase.db")
-    connection.row_factory = sqlite3.Row
-    cursor = connection.cursor()
+  if 'username' not in session:
+    return redirect(url_for('login'))
+  productId = request.args.get('productId')
 
-    print(productId)
-    for i in range(len(session['items'])):
-      if (session['items'][i] == productId):
-        print('hits')
-        temp1 = session['items']
-        temp1.pop(i)
-        session['items'] = temp1
+  print(productId)
+  for i in range(len(session['items'])):
+    if (session['items'][i] == productId):
+      print('hits')
+      temp1 = session['items']
+      temp1.pop(i)
+      session['items'] = temp1
 
-        temp2 = session['num']
-        temp2.pop(i)
-        session['num'] = temp2
-        break
-    connection.close()
-    return redirect('/')
+      temp2 = session['num']
+      temp2.pop(i)
+      session['num'] = temp2
+      break
+  return redirect('/')
 
 
 
