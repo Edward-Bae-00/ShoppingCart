@@ -24,30 +24,39 @@ def getLoginDetails():
 # the login page
 @app.route('/login', methods=['GET','POST'])
 def login():
-  # connect the database
+  # connect to the database
   connection = sqlite3.connect("myDatabase.db")
   connection.row_factory = sqlite3.Row
   cursor = connection.cursor()
 
+  # if one of the buttons have been pressed
   if request.method == 'POST':
+    # if the login button was pressed
     if 'login' in request.form:
+      # get the username and the data about the user and fetches it
       username = request.form['username']
       cursor.execute("SELECT username, password FROM users WHERE username = ?", (username,))
       data = cursor.fetchall()
+      # gets the items the user has in their cart
       cursor.execute('SELECT DISTINCT(type) FROM items')
       categoryData = cursor.fetchall()
       connection.close()
 
+      # sends a message if either the username or password are incorrect
+      # else go to the store homepage
       if len(data) == 0 or data[0]['password'] != request.form['password']:
-        return render_template('login.html', success=False)
+        return render_template('login.html', categoryData=categoryData, success=False)
       else:
         session['username'] = request.form['username']
         return redirect('/')
+    # what to do if logout was pressed
     elif "logout" in request.form:
      return redirect('/logout')
+    # reroute the page to the adduser page if adduser button was selected
     elif "adduser" in request.form:
       return redirect('/adduser')
   else:
+    # what to do if none of the buttons were pressed
     cursor.execute('SELECT DISTINCT(type) FROM items')
     categoryData = cursor.fetchall()
     connection.close()
@@ -56,9 +65,11 @@ def login():
 
 @app.route('/adduser', methods = ['GET', 'POST'])
 def add_user():
+    # connect to the database
     connection = sqlite3.connect("myDatabase.db")
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
+    # if the login button was pressed
     if (request.method == 'POST'):
           username = request.form['username']
           password = request.form['password']
@@ -100,10 +111,6 @@ def store():
   else:
     cursor.execute("SELECT id, name, image, price, type, inventory FROM items WHERE name = ?", (thing,))
     productData = cursor.fetchone()
-    # print(productData)
-    # print(productData[0])
-    # print(productData[1])
-    # print(productData[3])
     return render_template("productDescription.html", data=productData, noOfItems = noOfItems, categoryData=categoryData) 
 
 
@@ -116,7 +123,7 @@ def productDescription():
   connection.row_factory = sqlite3.Row
   cursor = connection.cursor()
 
-  # global productId
+  global productId
   productId = request.args.get('productId')
   cursor.execute('SELECT id, name, image, price, type, inventory FROM items WHERE id = ?', (productId, ))
   productData = cursor.fetchone()
@@ -155,6 +162,7 @@ def addToCart():
         session['items'] = []
         session['num'] = []
       # handles adding to cart when the product already exists
+      # and handles the case of adding to the cart if the product is not already in the cart
       if productId in session['items']:
         # for loop to see the position that the product is in the list
         for i in range(len(session['items'])):
@@ -167,19 +175,17 @@ def addToCart():
             cursor = connection.cursor()
             cursor.execute("SELECT id, name, image, price, type, inventory FROM items WHERE id = ?", (session['items'][i], ))
             data = cursor.fetchall()
-            print(data[0][5])
             if (temp[i] > int(data[0][5])):
               temp[i] = int(data[0][5])
             session['num'] = temp
       else:
+        # add the product id to the list of product id's
         temp = session['items']
         temp.append(productId)
         session['items'] = temp
 
-        print(productId)
-        print(session['items'])
-
-
+        # add the num of items ordered at the corresponding position to the productID
+        # in the list of productID's
         temp = session['num']
         temp.append(int(request.form['counter']))
         session['num'] = temp
